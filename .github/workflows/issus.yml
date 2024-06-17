@@ -1,0 +1,16 @@
+name: On issue
+on:
+  issues:
+    types: [opened, reopened, edited]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: 🚧　Install # 安装依赖
+        run: |
+          npm install
+      - name: 📦　Build # 构建，这样就不需要提交 dist 目录
+        run: |
+          npm run all
+      - uses: ./
